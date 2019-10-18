@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+<%= link_to "Nuevo Review", new_restaurant_dish_review_path(@restaurant, @dish), class: "btn btn-default"%>
+<p>
+  <strong>Name:</strong>
+  <%= @dish.name %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @dish.price %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @dish.description %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @dish.quantity %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @dish.rating %>
+</p>
+
+<%= link_to 'Back', root_path %>
+
+<div class="restaurants">
+  <% Review.all.each do |review| %>
+    <div class="restaurant">
+      <div class="thumbnail">
+        <div class="caption">
+          <h3><%= link_to truncate(review.body), restaurant_dish_review_path(@restaurant, @dish, review)%></h3>
+          <p><%= truncate(review.value, lenght: 150)%></p>
+          <p>
+            <%= link_to "Edit", edit_restaurant_dish_review_path(@restaurant, @dish, review), class: "btn btn-default"%>
+            <%= link_to "Delete", restaurant_dish_review_path(@restaurant, @dish, review), data: {confirm: "Seguro que quieres eliminar el comentario: #{review.body} ?", 
+            }, method: :delete %>
+          </p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @review.body %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @review.value %>
+</p>
+
+<p>
+  <strong>Dish:</strong>
+  <%= @review.dish %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @review.user %>
+</p>
+
+<%= link_to 'Edit', edit_restaurant_dish_review_path(@review) %> |
+<%= link_to 'Back', root_path %>

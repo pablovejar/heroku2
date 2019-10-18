@@ -1,0 +1,39 @@
+<div class="col-md-6 col-md-offset-3">
+
+	<div class="edit-dish-form">
+
+		<h1>Edit Dish</h1>
+
+		<%= simple_form_for([@restaurant, @dish]) do |form| %>
+          <div class="field">
+            <%= form.label :name %>
+            <%= form.text_field :name %>
+          </div>
+        
+          <div class="field">
+            <%= form.label :price %>
+            <%= form.text_field :price %>
+          </div>
+        
+          <div class="field">
+            <%= form.label :description %>
+            <%= form.text_area :description %>
+          </div>
+        
+          <div class="field">
+            <%= form.label :quantity %>
+            <%= form.number_field :quantity %>
+          </div>
+        
+          <div class="field">
+            <%= form.label :rating %>
+            <%= form.text_field :rating %>
+          </div>
+        
+          <div class="actions">
+            <%= form.submit %>
+          </div>
+		<% end %>	
+	</div>
+</div>
+<%= link_to 'Back', root_path %>

@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<div class="title-container">
+  <h1>Restaurants</h1>
+  <%= link_to "Nuevo Restaurante", new_restaurant_path, class: "btn btn-default"%>
+</div>
+
+<div class="restaurants">
+  <% @restaurants.each do |restaurant| %>
+    <div class="restaurant">
+      <div class="thumbnail">
+        <div class="caption">
+          <h3><%= link_to truncate(restaurant.name), restaurant_path(restaurant)%></h3>
+          <p><%= truncate(restaurant.address, lenght: 150)%></p>
+          <p>
+          <% if current_user.id == restaurant.user_id%>
+            <%= link_to "Edit", edit_restaurant_path(restaurant), class: "btn btn-default"%>
+            <%= link_to "Delete", restaurant_path(restaurant), data: {confirm: "Seguro que quieres eliminar el restaurant: #{restaurant.name} ?", 
+            }, method: :delete %>
+            <%end%>
+          </p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

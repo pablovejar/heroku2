@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  price: 1.5
+  payment: MyString
+  delivery_address: MyString
+  delivery_time: 2019-09-26 06:55:25
+  status: MyString
+  notes: MyText
+
+two:
+  price: 1.5
+  payment: MyString
+  delivery_address: MyString
+  delivery_time: 2019-09-26 06:55:25
+  status: MyString
+  notes: MyText

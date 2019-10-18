@@ -1,0 +1,89 @@
+<p id="notice"><%= notice %></p>
+
+<div class="title-container">
+<h1>Bienvenido a <%=@restaurant.name%></h1>
+<% if user_signed_in? %>
+  <% if current_user.id == @restaurant.user_id %>
+    <%= link_to "Nuevo Plato", new_restaurant_dish_path(@restaurant), class: "btn btn-default" %>
+  <% end %>
+  <%= link_to "Nuevo Comentario", new_restaurant_comment_path(@restaurant), class: "btn btn-default"%>
+<% end %>
+</div>
+
+<p>
+  <strong>Name:</strong>
+  <%= @restaurant.name %>
+</p>
+
+<p>
+  <strong>Mail:</strong>
+  <%= @restaurant.mail %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @restaurant.address %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @restaurant.rating %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @restaurant.phone %>
+</p>
+
+<%= link_to 'Back', restaurants_path %>
+
+<div class="restaurants">
+  <% Dish.all.each do |dish| %>
+
+    <% if dish.restaurant_id == @restaurant.id%>
+      <div class="restaurant">
+        <div class="thumbnail">
+          <div class="caption">
+            <h3><%= link_to truncate(dish.name), restaurant_dish_path(@restaurant, dish)%></h3>
+            <p><%= truncate(dish.description, lenght: 150)%></p>
+            <p><%= dish.price%></p>
+            <p>
+            <%if user_signed_in?%>
+              <% if current_user.id == @restaurant.user_id%>
+                <%= link_to "Edit", edit_restaurant_dish_path(@restaurant, dish), class: "btn btn-default"%>
+                <%= link_to "Delete", restaurant_dish_path(@restaurant, dish), data: {confirm: "Seguro que quieres eliminar el plato: #{dish.name} ?", 
+                }, method: :delete %>
+              </p>
+              <%end%>
+            <%end%>
+            
+          </div>
+        </div>
+      </div>
+    <% end%>
+  <% end %>
+</div>
+
+<div class="restaurants">
+  <% Comment.all.each do |comment| %> 
+    <% if comment.restaurant_id == @restaurant.id%>
+      <div class="restaurant">
+        <div class="thumbnail">
+          <div class="caption">
+            <h3><%= comment.body%></h3>
+            <p><%= comment.date%></p>
+            <p>
+            <%if user_signed_in?%>
+              <% if current_user.id == @restaurant.user_id%>
+                <%= link_to "Edit", edit_restaurant_comment_path(@restaurant, comment), class: "btn btn-default"%>
+                <%= link_to "Delete", restaurant_comment_path(@restaurant, comment), data: {confirm: "Seguro que quieres eliminar el comentario: #{comment} ?", 
+                }, method: :delete %>
+              <% end%> 
+            <% end%>                
+            </p>
+          </div>
+        </div>
+      </div>
+    <% end%>
+  <% end %>
+</div>
